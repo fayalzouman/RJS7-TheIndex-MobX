@@ -11,10 +11,11 @@ import BookList from "./BookList";
 
 // Store
 import authorStore from "./stores/authorStore";
+import bookStore from "./stores/bookStore";
 
 function App() {
   const getView = () => {
-    if (authorStore.loading) {
+    if (authorStore.loading || bookStore.loading) {
       return <Loading />;
     } else {
       return (
@@ -22,6 +23,7 @@ function App() {
           <Redirect exact from="/" to="/authors" />
           <Route path="/authors/:authorID" component={AuthorDetail} />
           <Route path="/authors/" component={AuthorsList} />
+          <Route path="/books/" component={BookList} />
           <Route path="/books/:bookColor?" component={BookList} />
         </Switch>
       );
